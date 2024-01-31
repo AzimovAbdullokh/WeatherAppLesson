@@ -53,6 +53,9 @@ android {
 
 dependencies {
 
+    // Location Services
+    implementation("com.google.android.gms:play-services-location:21.1.0")
+
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
@@ -71,6 +74,12 @@ dependencies {
     ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
+    // Lottie animation
+    implementation("com.airbnb.android:lottie-compose:6.3.0")
+
+    // UI
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.32.0")
+    
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")

@@ -1,9 +1,9 @@
 package com.example.weatherapp.di
 
 import com.example.weatherapp.data.remote.WeatherService
-import com.example.weatherapp.data.repository.DefaultGetCurrentWeatherRepository
+import com.example.weatherapp.data.repository.WeatherRepositoryImpl
 import com.example.weatherapp.data.utils.Constants.BASE_URL
-import com.example.weatherapp.domain.repository.GetCurrentWeatherRepository
+import com.example.weatherapp.domain.repository.WeatherRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,8 +21,8 @@ class DataModule {
     @Provides
     fun provideGetCurrentWeatherRepository(
         service: WeatherService
-    ): GetCurrentWeatherRepository {
-        return DefaultGetCurrentWeatherRepository(
+    ): WeatherRepository {
+        return WeatherRepositoryImpl(
             service = service
         )
     }

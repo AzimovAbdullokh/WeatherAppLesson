@@ -1,17 +1,19 @@
 package com.example.weatherapp.data.mappers
 
-import com.example.weatherapp.data.models.WeatherCloudModel
-import com.example.weatherapp.data.models.WeatherCloudsModel
-import com.example.weatherapp.data.models.WeatherCoordinateModel
-import com.example.weatherapp.data.models.WeatherDataModel
-import com.example.weatherapp.data.models.WeatherMainModel
-import com.example.weatherapp.data.models.WeatherWindInfoModel
-import com.example.weatherapp.domain.models.CurrentWeatherDomainModel
-import com.example.weatherapp.domain.models.WeatherCloudDomainModel
-import com.example.weatherapp.domain.models.WeatherCoordinateDomainModel
-import com.example.weatherapp.domain.models.WeatherDataDomainModel
-import com.example.weatherapp.domain.models.WeatherMainDomainModel
-import com.example.weatherapp.domain.models.WeatherWindDomainModel
+import com.example.weatherapp.data.models.current_weather.WeatherCloudModel
+import com.example.weatherapp.data.models.current_weather.WeatherCloudsModel
+import com.example.weatherapp.data.models.current_weather.WeatherCoordinateModel
+import com.example.weatherapp.data.models.current_weather.WeatherDataModel
+import com.example.weatherapp.data.models.current_weather.WeatherMainModel
+import com.example.weatherapp.data.models.current_weather.WeatherSysDataModel
+import com.example.weatherapp.data.models.current_weather.WeatherWindInfoModel
+import com.example.weatherapp.domain.models.current_weather.CurrentWeatherDomainModel
+import com.example.weatherapp.domain.models.current_weather.WeatherCloudDomainModel
+import com.example.weatherapp.domain.models.current_weather.WeatherCoordinateDomainModel
+import com.example.weatherapp.domain.models.current_weather.WeatherDataDomainModel
+import com.example.weatherapp.domain.models.current_weather.WeatherMainDomainModel
+import com.example.weatherapp.domain.models.current_weather.WeatherSysDomainModel
+import com.example.weatherapp.domain.models.current_weather.WeatherWindDomainModel
 
 fun WeatherCloudModel.toDomainModel() = CurrentWeatherDomainModel(
     weatherId = weatherId,
@@ -27,7 +29,6 @@ fun WeatherMainModel.toDomainModel() = WeatherMainDomainModel(
     weatherPressure = weatherPressure,
     weatherHumidity = weatherHumidity,
 )
-
 
 fun WeatherCoordinateModel.toDomainModel() = WeatherCoordinateDomainModel(
     latitude = latitude,
@@ -45,52 +46,16 @@ fun WeatherCloudsModel.toDomainModel() = WeatherCloudDomainModel(
 
 fun WeatherDataModel.toDomainModel() = WeatherDataDomainModel(
     weatherCoordinate = weatherCoordinate.toDomainModel(),
-    currentWeather = weather.toDomainModel(),
+    currentWeather = weather.map { it.toDomainModel() },
     weatherBase = weatherBase,
     weatherMain = weatherMain.toDomainModel(),
     weatherVisibility = visibility,
     weatherWind = weatherWindInfo.toDomainModel(),
     weatherCloud = weatherClouds.toDomainModel(),
-    cityName = cityName
+    cityName = cityName,
+    countryModel = this.countryModel.toDomain()
 )
 
-fun CurrentWeatherDomainModel.toDataModelModel() = WeatherCloudModel(
-    weatherId = weatherId,
-    weatherMain = weatherMain,
-    weatherDescription = weatherDescription
-)
-
-fun WeatherMainDomainModel.toDataModelModel() = WeatherMainModel(
-    weatherTemperature = weatherTemperature,
-    feelsLike = howWeatherFeels,
-    weatherMinTemp = weatherMinTemperature,
-    weatherMaxTemp = weatherMaxTemperature,
-    weatherPressure = weatherPressure,
-    weatherHumidity = weatherHumidity,
-)
-
-
-fun WeatherCloudDomainModel.toDataModelModel() = WeatherCloudsModel(
-    all = all
-)
-
-fun WeatherCoordinateDomainModel.toDataModelModel() = WeatherCoordinateModel(
-    latitude = latitude,
-    longitude = longitude,
-)
-
-fun WeatherWindDomainModel.toDataModelModel() = WeatherWindInfoModel(
-    windSpeed = windSpeed,
-    windDeg = windDeg
-)
-
-fun WeatherDataDomainModel.toDataModelModel() = WeatherDataModel(
-    weatherCoordinate = weatherCoordinate.toDataModelModel(),
-    weather = currentWeather.toDataModelModel(),
-    weatherBase = weatherBase,
-    weatherMain = weatherMain.toDataModelModel(),
-    visibility = weatherVisibility,
-    weatherWindInfo = weatherWind.toDataModelModel(),
-    weatherClouds = weatherCloud.toDataModelModel(),
-    cityName = cityName
+fun WeatherSysDataModel.toDomain() = WeatherSysDomainModel(
+    country = this.country
 )
