@@ -15,17 +15,15 @@ class MainScreenViewModel @Inject constructor(
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
 ) : ViewModel() {
 
-
     private val handle = CoroutineExceptionHandler { _, throwable -> }
 
     init {
         viewModelScope.launch(handle + Dispatchers.IO) {
             Log.d("WEATHER_APP", "launch")
-            val response = getCurrentWeatherUseCase(
-                longitude = 72.816101,
-                latitude = 40.513996,
-            )
-            Log.d("WEATHER_APP", "cityNameByServer: ${response.cityName}")
+            val response = getCurrentWeatherUseCase()
+//            longitude = 72.816101,
+//            latitude = 40.513996,
+            Log.d("WEATHER_APP", "cityNameByServer: ${response.data}")
         }
     }
 }

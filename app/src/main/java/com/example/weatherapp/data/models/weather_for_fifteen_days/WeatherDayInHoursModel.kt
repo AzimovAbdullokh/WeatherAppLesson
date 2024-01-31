@@ -7,6 +7,7 @@ data class WeatherDayInHoursModel(
     @SerializedName("list")
     val weatherList: List<WeatherDayInHoursLists>,
 ) : Serializable {
+
     companion object {
         val unknown = WeatherDayInHoursModel(
             weatherList = emptyList()

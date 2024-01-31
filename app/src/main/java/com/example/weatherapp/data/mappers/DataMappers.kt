@@ -56,6 +56,51 @@ fun WeatherDataModel.toDomainModel() = WeatherDataDomainModel(
     countryModel = this.countryModel.toDomain()
 )
 
+fun WeatherDataDomainModel.toCache() = WeatherDataModel(
+    weatherCoordinate = weatherCoordinate.toCache(),
+    weather = currentWeather.map { it.toDomain() },
+    weatherBase = weatherBase,
+    weatherMain = weatherMain.toDomain(),
+    visibility = weatherVisibility,
+    weatherWindInfo = weatherWind.toDomain(),
+    weatherClouds = weatherCloud.toDomain(),
+    cityName = cityName,
+    countryModel = this.countryModel.toDomain()
+)
+
+fun WeatherCoordinateDomainModel.toCache() = WeatherCoordinateModel(
+    latitude = latitude,
+    longitude = longitude
+)
+
 fun WeatherSysDataModel.toDomain() = WeatherSysDomainModel(
     country = this.country
+)
+
+fun CurrentWeatherDomainModel.toDomain() = WeatherCloudModel(
+    weatherId = weatherId,
+    weatherMain = weatherMain,
+    weatherDescription = weatherDescription
+)
+
+fun WeatherMainDomainModel.toDomain() = WeatherMainModel(
+    weatherTemperature = weatherTemperature,
+    weatherPressure = weatherPressure,
+    weatherHumidity = weatherHumidity,
+    weatherMinTemp = weatherMinTemperature,
+    weatherMaxTemp = weatherMaxTemperature,
+    feelsLike = howWeatherFeels,
+)
+
+fun WeatherWindDomainModel.toDomain() = WeatherWindInfoModel(
+    windSpeed = windSpeed,
+    windDeg = windDeg
+)
+
+fun WeatherCloudDomainModel.toDomain() = WeatherCloudsModel(
+    all = all
+)
+
+fun WeatherSysDomainModel.toDomain() = WeatherSysDataModel(
+    country = country
 )

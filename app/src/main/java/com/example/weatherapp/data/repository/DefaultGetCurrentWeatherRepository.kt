@@ -1,7 +1,6 @@
 package com.example.weatherapp.data.repository
 
 import com.example.weatherapp.data.mappers.toDomainModel
-import com.example.weatherapp.data.models.WeatherDataModel
 import com.example.weatherapp.data.remote.WeatherService
 import com.example.weatherapp.domain.models.WeatherDataDomainModel
 import com.example.weatherapp.domain.repository.GetCurrentWeatherRepository
@@ -15,9 +14,8 @@ class DefaultGetCurrentWeatherRepository @Inject constructor(
         latitude: Double,
         longitude: Double,
     ): WeatherDataDomainModel {
-        return service.getCurrentWeather(
-            latitude = latitude,
-            longitude = longitude,
-        ).body()?.toDomainModel() ?: WeatherDataModel.unknown.toDomainModel()
+        return (service.getCurrentWeather(
+            latitude, longitude,
+        ).body()?.toDomainModel() ?: WeatherDataDomainModel.unknown) as WeatherDataDomainModel
     }
 }

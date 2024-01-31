@@ -9,9 +9,9 @@ data class WeatherDayInHoursLists(
     val weatherMain: WeatherMainModelInDays,
     @SerializedName("weather")
     val weather: WeatherCloudModelInDays,
-    @SerializedName("weather")
+    @SerializedName("clouds")
     val weatherClouds: WeatherCloudsModel,
-    @SerializedName("weather")
+    @SerializedName("wind")
     val weatherWind: WeatherWindInfoModelInDays,
     @SerializedName("visibility")
     val visibility: Int,

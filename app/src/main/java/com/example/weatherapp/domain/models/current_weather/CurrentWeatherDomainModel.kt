@@ -5,7 +5,6 @@ data class CurrentWeatherDomainModel(
     val weatherMain: String,
     val weatherDescription: String,
 ) {
-
     val isClear = weatherMain == "Clear"
     val isCloudy = weatherMain == "Clouds"
     val isMist = weatherMain == "Mist" || weatherMain == "Smoke"

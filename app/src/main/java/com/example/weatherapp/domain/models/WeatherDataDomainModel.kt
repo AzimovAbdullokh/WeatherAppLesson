@@ -9,5 +9,18 @@ data class WeatherDataDomainModel(
     val weatherWind: WeatherWindDomainModel,
     val weatherCloud: WeatherCloudDomainModel,
     val cityName: String,
-)
+) {
+    companion object {
+        val unknown = WeatherDataDomainModel(
+            weatherCoordinate = WeatherCoordinateDomainModel.unknown,
+            currentWeather = CurrentWeatherDomainModel.unknown,
+            weatherBase = String(),
+            weatherMain = WeatherMainDomainModel.unknown,
+            weatherVisibility = -1,
+            weatherWind = WeatherWindDomainModel.unknown,
+            weatherCloud = WeatherCloudDomainModel.unknown,
+            cityName = String()
+        )
+    }
+}
 

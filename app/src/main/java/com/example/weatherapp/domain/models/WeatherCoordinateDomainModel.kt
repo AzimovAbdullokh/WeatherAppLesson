@@ -1,6 +1,13 @@
 package com.example.weatherapp.domain.models
 
 data class WeatherCoordinateDomainModel(
-    val latitude:Double,
-    val longitude:Double,
- )
+    val latitude: Double,
+    val longitude: Double,
+) {
+    companion object {
+        val unknown = WeatherCoordinateDomainModel(
+            latitude = 0.0,
+            longitude = 0.0
+        )
+    }
+}

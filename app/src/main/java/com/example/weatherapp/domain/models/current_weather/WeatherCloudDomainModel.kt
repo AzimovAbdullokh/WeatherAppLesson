@@ -1,6 +1,6 @@
 package com.example.weatherapp.domain.models.current_weather
 
-data class WeatherCloudDomainModel(
+data class WeatherCloudDomainModel  (
     val all: Int,
 ) {
     companion object {
